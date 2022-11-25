@@ -1,0 +1,18 @@
+
+from google.colab import files 
+files.upload()
+
+
+df = spark.read.format("csv").option("header", "true").option("mode", "failfast").load("data")
+
+
+df.show(3)
+
+
+df.createOrReplaceTempView("data")
+
+spark.sql("select * from data")
+
+spark.sql(select count(*) from data group by age").show
+
+spark.sql(select name from data where age < 30").show
